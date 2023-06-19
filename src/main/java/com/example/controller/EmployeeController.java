@@ -45,8 +45,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/many")
-    public Flux<Employee> addManyEmployees(@RequestBody Collection<Employee> employeesCollection){
-        return employeeService.addManyEmployees(employeesCollection);
+    public Flux<Employee> addManyEmployees(@RequestBody Mono<Collection<Employee>> employeesCollectionMono){
+        return employeeService.addManyEmployees(employeesCollectionMono);
     }
 
     @PutMapping("/many")

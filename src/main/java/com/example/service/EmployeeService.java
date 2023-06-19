@@ -55,8 +55,8 @@ public class EmployeeService {
         return mongoOps.findAndRemove(query(where("_id").is(id)), Employee.class, AppConfig.collectionName);
     }
 
-    public Flux<Employee> addManyEmployees(Collection<Employee> employeesCollection){
-        return mongoOps.insert(employeesCollection, AppConfig.collectionName);
+    public Flux<Employee> addManyEmployees(Mono<Collection<Employee>> employeesCollectionMono){
+        return mongoOps.insertAll(employeesCollectionMono, AppConfig.collectionName);
     }
 
     public Flux<Employee> updateManyEmployees(Flux<Employee> employeesFlux){
